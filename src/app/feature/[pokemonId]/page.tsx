@@ -5,12 +5,12 @@ import { useSelector,  } from 'react-redux';
 import { AppState } from '../../store/store';
 
 type DetailPros = {
-  productId?: string,
+  pokemonId?: string,
 }
 
 const Detail = ({ params }: { params: DetailPros }) => {
   const { items, status, error } = useSelector((state: AppState) => state.items);
-  const { productId } = params
+  const { pokemonId } = params
 
 
   const [pokemonDetail, setPokemonDetail] = useState(null);
@@ -19,11 +19,11 @@ const Detail = ({ params }: { params: DetailPros }) => {
 
 
   useEffect(() => {
-    if (productId) {
+    if (pokemonId) {
       // API'den ürünü almak için async fonksiyon
       const fetchProduct = async () => {
         try {
-          const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${productId}`);
+          const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
           if (!response.ok) {
             throw new Error('Ürün bulunamadı');
           }
@@ -40,7 +40,7 @@ const Detail = ({ params }: { params: DetailPros }) => {
       };
       fetchProduct();
     }
-  }, [productId]);
+  }, [pokemonId]);
 
 
   if (loading) {
