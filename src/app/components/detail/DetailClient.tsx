@@ -45,7 +45,7 @@ const DetailClient: React.FC<{ pokemon: PokemonDetail | null }> = ({ pokemon }) 
             <div className=' w-[12%] max-sm:w-[20%] rounded-full border overflow-hidden bg-sky-500/[.06]'>
               <img className='w-[100%] h-[100%] object-contain' src={pokemon?.sprites?.front_default} alt={pokemon.name} />
             </div>
-            <div className='text-orange-600 font-bold text-4xl max-sm:text-xl ml-5'>{TextClip(capitalize(pokemon.name), 20)}</div>
+            <div className='text-orange-600 font-bold text-4xl max-sm:text-xl ml-5'>{TextClip(capitalize(pokemon?.name), 20)}</div>
           </div>
 
           <div className='flex w-[100%] h-[100%]'>
@@ -53,7 +53,7 @@ const DetailClient: React.FC<{ pokemon: PokemonDetail | null }> = ({ pokemon }) 
               <li className='flex w-[100%] border-b-[1px] p-4 hover:bg-orange-100 hover:text-orange-500 transition delay-200 ease-in-out'>
                 <span className='min-w-[150px] font-bold lg:text-2xl md:text-lg sm:text-base'>Yetenekler:</span>
                 <p className='lg:text-xl md:text-base'>
-                  {pokemon.abilities.map((ability) => { return TextClip(capitalize(ability.ability.name), 20); }).join(', ')}
+                  {pokemon?.abilities.map((ability) => { return TextClip(capitalize(ability.ability.name), 20); }).join(', ')}
                 </p>
               </li>
               <li className='flex w-[100%] border-b-[1px] p-4 hover:bg-orange-100 hover:text-orange-500 transition delay-200 ease-in-out'>
