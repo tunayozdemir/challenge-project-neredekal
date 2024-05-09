@@ -1,16 +1,12 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { DetailClient } from '@/app/components'
-
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchItemsAsync } from '../../store/itemsSlice';
-import { AppState, AppDispatch } from '../../store/store';
+import { useSelector,  } from 'react-redux';
+import { AppState } from '../../store/store';
 
 type DetailPros = {
   productId?: string,
 }
-
 
 const Detail = ({ params }: { params: DetailPros }) => {
   const { items, status, error } = useSelector((state: AppState) => state.items);

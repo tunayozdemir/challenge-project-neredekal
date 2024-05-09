@@ -1,4 +1,3 @@
-// api.ts
 
 export async function fetchPokemons() {
     const response = await fetch('https://pokeapi.co/api/v2/pokemon');

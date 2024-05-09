@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import TextClip from '../../utils/TextClip';
 
 
-interface ProductCartProps {
+interface PokemonCartProps {
   items: {
     details: {
       id: number;
@@ -26,22 +26,18 @@ function capitalize(text: string) {
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
-const ProductCart: React.FC<ProductCartProps> = ({ items }) => {
+const PokemonCart: React.FC<PokemonCartProps> = ({ items }) => {
 
   const router = useRouter()
 
   const handleClick = () => {
-    // Router push fonksiyonunda string URL kullanıyoruz.
-    // const url = `/product/${items.details.id}?name=${encodeURIComponent(items.details.name)}&title=${encodeURIComponent(items.name)}`;
-    // router.push(url);
-    router.push(`/product/${items.details.id}`);
+    router.push(`/feature/${items.details.id}`);
   };
 
   return (
-    <div
-      // onClick={() => router.push(`product/${items.details.id}`)}
-      onClick={handleClick}
-      className='w-[400px] h-[280px] flex-basis-25% cursor-pointer flex flex-col shadow-md rounded-md border hover:shadow-lg p-5'>
+    <div onClick={handleClick}
+      className='lg:w-[30%] lg:h-[280px] md:w-[47%] sm:w-[100%] sm:h-[250px] 
+      max-sm:w-[100%] max-sm:h-[230px] flex-basis-25% cursor-pointer flex flex-col shadow-md rounded-md border hover:shadow-lg transition delay-100 ease-in-out hover:scale-110 p-2'>
       {
         items?.details ?
           <>
@@ -66,11 +62,11 @@ const ProductCart: React.FC<ProductCartProps> = ({ items }) => {
               </div>
             </div>
           </> :
-          <div>Yükleniyor...</div>
+          <div className='text-8xl text-orange-600 flex items-center justify-center p-10'>Yükleniyor...</div>
       }
     </div>
 
   )
 }
 
-export default ProductCart
+export default PokemonCart

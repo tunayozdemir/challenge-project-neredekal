@@ -6,6 +6,7 @@ import { Products } from "./components";
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchItemsAsync } from './store/itemsSlice';
 import { AppState, AppDispatch } from './store/store';
+import { Button } from 'antd';
 
 
 export default function Home() {
@@ -29,13 +30,7 @@ export default function Home() {
     dispatch(fetchItemsAsync());
   }, [dispatch]);
 
-  if (status === 'loading') {
-    return <div>Yükleniyor...</div>;
-  }
 
-  if (status === 'failed') {
-    return <div>Bir hata oluştu: {error}</div>;
-  }
 
   // Sayfa değiştirici fonksiyonunu tanımla
   const changePage = (newPage: number) => {
@@ -46,23 +41,29 @@ export default function Home() {
   const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
 
 
+  if (status === 'loading') {
+    return <div className='text-8xl text-orange-600 flex items-center justify-center p-10'>Yükleniyor...</div>;
+  }
+
+  if (status === 'failed') {
+    return <div className='text-8xl text-red-600 flex items-center justify-center p-10'>Bir hata oluştu: {error}</div>;
+  }
+
   return (
     <div>
-      {/* Products bileşenine mevcut sayfadaki öğeleri gönder */}
       <Products items={currentItems} />
 
-      {/* Pagination */}
-      <div className="pagination">
+      <div className='flex justify-center items-center gap-3 mt-20'>
         {Array.from({ length: totalPages }, (_, i) => (
-          <button
-            key={i}
+          <Button
             onClick={() => changePage(i + 1)}
             disabled={currentPage === i + 1}
+            type="primary"
           >
-            {i + 1}
-          </button>
+            <div>{i + 1}</div>
+          </Button>
         ))}
       </div>
-    </div>
+    </div >
   );
 }

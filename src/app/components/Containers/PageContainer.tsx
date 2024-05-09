@@ -2,9 +2,9 @@
 
 import React from 'react'
 
-const PageContainer = ({ children }: { children: React.ReactNode }) => {
+const PageContainer = ({ children, className }: { children: React.ReactNode, className?: string }) => {
   return (
-    <div className='px-3 md:px-10'>{children}</div>
+    <div className={`'px-3 md:px-10' ${className}`} >{children}</div>
   )
 }
 
