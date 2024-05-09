@@ -56,6 +56,7 @@ export default function Home() {
       <div className='flex justify-center items-center gap-3 mt-20'>
         {Array.from({ length: totalPages }, (_, i) => (
           <Button
+            key={i}
             onClick={() => changePage(i + 1)}
             disabled={currentPage === i + 1}
             type="primary"
