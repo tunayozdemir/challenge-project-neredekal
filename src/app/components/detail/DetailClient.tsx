@@ -8,7 +8,12 @@ import TextClip from '../../utils/TextClip';
 interface PokemonDetail {
   name?: string;
   title?: string;
-  details: [],
+  details: [];
+  abilities: { ability: { name: string } }[];
+  types: { type: { name: string } }[];
+  sprites: {
+    front_default: string;
+  };
 }
 
 const DetailClient: React.FC<{ pokemon: PokemonDetail | null }> = ({ pokemon }) => {
@@ -35,8 +40,6 @@ const DetailClient: React.FC<{ pokemon: PokemonDetail | null }> = ({ pokemon }) 
     return text.charAt(0).toUpperCase() + text.slice(1);
   }
 
-  console.log(pokemon)
-
   return (
     <div className='flex justify-center items-center my-10'>
       <PageContainer className='w-[90vw] h-[80vh] flex shadow-md border rounded'>
@@ -45,7 +48,7 @@ const DetailClient: React.FC<{ pokemon: PokemonDetail | null }> = ({ pokemon }) 
             <div className=' w-[12%] max-sm:w-[20%] rounded-full border overflow-hidden bg-sky-500/[.06]'>
               <img className='w-[100%] h-[100%] object-contain' src={pokemon?.sprites?.front_default} alt={pokemon.name} />
             </div>
-            <div className='text-orange-600 font-bold text-4xl max-sm:text-xl ml-5'>{TextClip(capitalize(pokemon?.name), 20)}</div>
+            <div className='text-orange-600 font-bold text-4xl max-sm:text-xl ml-5'>{pokemon.name}</div>
           </div>
 
           <div className='flex w-[100%] h-[100%]'>
