@@ -1,10 +1,25 @@
-// store/itemsSlice.ts
-
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { fetchPokemons, fetchPokemonDetails } from '../lib/api';
 
+// Pokémon nesnesi için daha kesin bir arayüz tanımı
+interface Pokemon {
+  name: string;
+  url: string;
+  details: PokemonDetails;
+}
+
+// Pokémon detayları için arayüz tanımı
+interface PokemonDetails {
+  id: number;
+  name: string;
+  sprites: { front_default: string; };
+  abilities: { ability: { name: string; }; }[];
+  types: { type: { name: string; }; }[];
+}
+
+// initialState tür tanımı
 interface ItemsState {
-  items: any[];
+  items: Pokemon[];
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
 }
@@ -15,13 +30,11 @@ const initialState: ItemsState = {
   error: null,
 };
 
-// Asenkron işlemi tanımlayın
-export const fetchItemsAsync = createAsyncThunk(
-  'items/fetchItems',
+export const fetchItemsAsync = createAsyncThunk('items/fetchItems',
   async () => {
     const pokemons = await fetchPokemons();
     const detailedPokemons = await Promise.all(
-      pokemons.map(async (pokemon) => {
+      pokemons.map(async (pokemon: any) => {
         const details = await fetchPokemonDetails(pokemon.url);
         return { ...pokemon, details };
       })
@@ -39,7 +52,7 @@ const itemsSlice = createSlice({
       .addCase(fetchItemsAsync.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchItemsAsync.fulfilled, (state, action: PayloadAction<any[]>) => {
+      .addCase(fetchItemsAsync.fulfilled, (state, action: PayloadAction<Pokemon[]>) => {
         state.status = 'succeeded';
         state.items = action.payload;
       })

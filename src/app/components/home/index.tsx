@@ -1,3 +1,3 @@
 
-export { default as Products } from './PokemonWrap'
-export { default as ProductCart } from './PokemonCart'
+export { default as PokemonWrap } from './PokemonWrap'
+export { default as PokemonCart } from './PokemonCart'

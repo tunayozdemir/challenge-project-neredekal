@@ -1,13 +1,12 @@
 "use client"
 // "use server"
 import React, { useEffect, useState } from 'react';
-import { Products } from "./components";
+import { PokemonWrap } from "./components";
 
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchItemsAsync } from './store/itemsSlice';
 import { AppState, AppDispatch } from './store/store';
 import { Button } from 'antd';
-
 
 export default function Home() {
 
@@ -16,10 +15,10 @@ export default function Home() {
 
   const ITEMS_PER_PAGE = 10;
 
-  // Mevcut sayfa numarası için bir durum değişkeni tanımla
+  // Mevcut sayfa numarası için bir durum değişkeni tanımlar
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Sayfa numarasına göre başlat ve bitir indekslerini hesapla
+  // Sayfa numarasına göre başlat ve bitir indekslerini hesaplar
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
 
@@ -30,16 +29,13 @@ export default function Home() {
     dispatch(fetchItemsAsync());
   }, [dispatch]);
 
-
-
-  // Sayfa değiştirici fonksiyonunu tanımla
+  // Sayfa değiştirici fonksiyonunu tanımlar
   const changePage = (newPage: number) => {
     setCurrentPage(newPage);
   };
 
-  // Toplam sayfa sayısını hesapla
+  // Toplam sayfa sayısını hesaplar
   const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
-
 
   if (status === 'loading') {
     return <div className='text-8xl text-orange-600 flex items-center justify-center p-10'>Yükleniyor...</div>;
@@ -51,11 +47,12 @@ export default function Home() {
 
   return (
     <div>
-      <Products items={currentItems} />
+      <PokemonWrap items={currentItems} />
 
       <div className='flex justify-center items-center gap-3 mt-20'>
         {Array.from({ length: totalPages }, (_, i) => (
           <Button
+            key={i}
             onClick={() => changePage(i + 1)}
             disabled={currentPage === i + 1}
             type="primary"
@@ -64,6 +61,6 @@ export default function Home() {
           </Button>
         ))}
       </div>
-    </div >
+    </div>
   );
 }

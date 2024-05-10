@@ -6,6 +6,7 @@ import { AppState } from '../../store/store';
 
 type DetailPros = {
   pokemonId?: string,
+  err:string
 }
 
 const Detail = ({ params }: { params: DetailPros }) => {
@@ -34,7 +35,7 @@ const Detail = ({ params }: { params: DetailPros }) => {
           setLoading(false);
         } catch (err) {
           // Hata durumunda hatayı kaydedin
-          setIsError(err.message);
+          setIsError(error);
           setLoading(false);
         }
       };
