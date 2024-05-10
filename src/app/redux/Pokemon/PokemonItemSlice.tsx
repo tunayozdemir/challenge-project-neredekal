@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { fetchPokemons, fetchPokemonDetails } from '../lib/api';
+import { fetchPokemons, fetchPokemonDetails } from '../../utils/api';
 
 // Pokémon nesnesi için daha kesin bir arayüz tanımı
 interface Pokemon {

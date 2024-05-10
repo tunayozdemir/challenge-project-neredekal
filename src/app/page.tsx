@@ -4,8 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { PokemonWrap } from "./components";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchItemsAsync } from './store/itemsSlice';
-import { AppState, AppDispatch } from './store/store';
+import { fetchItemsAsync } from './redux/Pokemon/PokemonItemSlice';
+import { AppState, AppDispatch } from './redux/store';
 import { Button } from 'antd';
 
 export default function Home() {

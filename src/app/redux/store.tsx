@@ -1,12 +1,12 @@
 
 import { configureStore } from '@reduxjs/toolkit';
-import itemsReducer from './itemsSlice';
-import counterReducer from './counterSlice';
+import PokemonReducer from './Pokemon/PokemonItemSlice';
+import CounterReducer from './Counter/CounterSlice';
 
 const store = configureStore({
     reducer: {
-        items: itemsReducer,
-        counter: counterReducer,
+        items: PokemonReducer,
+        counter: CounterReducer,
     },
 });
 
