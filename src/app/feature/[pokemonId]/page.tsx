@@ -1,12 +1,12 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { DetailClient } from '@/app/components'
-import { useSelector,  } from 'react-redux';
+import { useSelector, } from 'react-redux';
 import { AppState } from '../../store/store';
 
 type DetailPros = {
   pokemonId?: string,
-  err:string
+  err: string
 }
 
 const Detail = ({ params }: { params: DetailPros }) => {
@@ -45,10 +45,10 @@ const Detail = ({ params }: { params: DetailPros }) => {
 
 
   if (loading) {
-    return <div>Yükleniyor...</div>; // Yüklenme sırasında gösterilecek mesaj
+    return <div className='text-8xl text-orange-600 flex items-center justify-center p-10'>Yükleniyor...</div>; // Yüklenme sırasında gösterilecek mesaj
   }
   if (error) {
-    return <div>Hata: {isError}</div>; // Hata durumunda gösterilecek mesaj
+    return <div className='text-8xl text-red-600 flex items-center justify-center p-10'>Hata: {isError}</div>; // Hata durumunda gösterilecek mesaj
   }
 
   return (
