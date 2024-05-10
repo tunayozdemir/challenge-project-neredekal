@@ -1,13 +1,13 @@
 
 import { configureStore } from '@reduxjs/toolkit';
-import PokemonReducer from './Pokemon/PokemonItemSlice';
-import CounterReducer from './Counter/CounterSlice';
+import PokemonItemSlice from './Pokemon/PokemonItemSlice';
+import counterReducer from './Counter/CounterSlice';
 
 const store = configureStore({
-    reducer: {
-        items: PokemonReducer,
-        counter: CounterReducer,
-    },
+  reducer: {
+    items: PokemonItemSlice,
+    counter: counterReducer,
+  },
 });
 
 export type AppState = ReturnType<typeof store.getState>;

@@ -1,5 +1,5 @@
 export { default as PageContainer } from './Containers/PageContainer'
 export { default as Footer} from './footer/Footer'
-export * from './navbar'
+export * from './header'
 export * from './home'
 export * from './detail'
