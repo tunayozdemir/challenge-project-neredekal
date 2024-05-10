@@ -1,9 +1,9 @@
 "use client"
 import React from 'react'
-import { ProductCart } from '..'
+import { PokemonCart } from '..'
 
-interface Pokemon {
-  id: number;
+interface PokemonDetails {
+  // id: number;
   name: string;
   details: {
     id: number;
@@ -15,16 +15,16 @@ interface Pokemon {
 }
 
 interface PokemonProps {
-  items: Pokemon[];
+  items: PokemonDetails[];
 }
 
-const PokemonWrap: React.FC<PokemonProps> = ({ items }) => {
+const PokemonWrap: React.FC<PokemonProps> = ({ items }) =>{
 
   return (
     <div>
       <div className='flex items-center justify-center flex-wrap gap-10 px-3 mt-20'>
         {items.map((poke, index) => (
-          <ProductCart key={index} array={poke} />
+          <PokemonCart key={index} array={poke} />
         ))}
       </div>
     </div>
