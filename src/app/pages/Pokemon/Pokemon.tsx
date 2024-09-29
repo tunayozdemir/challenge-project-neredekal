@@ -12,18 +12,20 @@ const Pokemon = () => {
 
   const dispatch = useDispatch<AppDispatch>();
   const { items, status, error } = useSelector((state: AppState) => state.items);
-
-  const ITEMS_PER_PAGE = 10;
+  const itemsPerPage = useSelector((state: AppState) => state.settings.itemsPerPage); // `itemsPerPage`'i seç
 
   // Mevcut sayfa numarası için bir durum değişkeni tanımlar
   const [currentPage, setCurrentPage] = useState(1);
 
   // Sayfa numarasına göre başlat ve bitir indekslerini hesaplar
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
 
   // Mevcut sayfadaki öğeleri seç
-  const currentItems = items.slice(startIndex, endIndex);
+  const currentItems = items.slice(startIndex, endIndex)
+
+  // Toplam sayfa sayısını hesaplar
+  const totalPages = Math.ceil(items.length / itemsPerPage);
 
   useEffect(() => {
     dispatch(fetchItemsAsync());
@@ -34,8 +36,6 @@ const Pokemon = () => {
     setCurrentPage(newPage);
   };
 
-  // Toplam sayfa sayısını hesaplar
-  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
 
   if (status === 'loading') {
     return <div className='text-8xl text-orange-600 flex items-center justify-center p-10'>Yükleniyor...</div>;

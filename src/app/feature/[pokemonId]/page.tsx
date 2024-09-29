@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { DetailClient } from '@/app/components'
 import { useSelector, } from 'react-redux';
-import { AppState } from '../../store/store';
+import { AppState } from '../../redux/store';
 
 type DetailPros = {
   pokemonId?: string,
